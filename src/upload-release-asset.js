@@ -11,6 +11,7 @@ async function run() {
     const uploadUrl = core.getInput('upload_url', { required: true });
     const assetPath = core.getInput('asset_path', { required: true });
     const assetName = core.getInput('asset_name', { required: true });
+    const assetLabel = core.getInput('asset_label', { required: false });
     const assetContentType = core.getInput('asset_content_type', { required: true });
 
     // Determine content-length for header to upload asset
@@ -23,7 +24,7 @@ async function run() {
     // API Documentation: https://developer.github.com/v3/repos/releases/#upload-a-release-asset
     // Octokit Documentation: https://octokit.github.io/rest.js/#octokit-routes-repos-upload-release-asset
     const uploadAssetResponse = await github.repos.uploadReleaseAsset({
-      url: uploadUrl,
+      url: uploadUrl.replace("{?name,label}", `?name=${assetName}&label=${assetLabel}`),
       headers,
       name: assetName,
       file: fs.readFileSync(assetPath)
