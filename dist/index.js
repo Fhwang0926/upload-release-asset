@@ -4226,7 +4226,7 @@ async function run() {
 
     // Get the inputs from the workflow file: https://github.com/actions/toolkit/tree/master/packages/core#inputsoutputs
     const uploadUrl = core.getInput('upload_url', { required: true });
-    const assetPath = core.getInput('asset_path', { required: true });
+    const assetPath = core.getInput('asset_path', { required: false });
     const assetName = core.getInput('asset_name', { required: true });
     const assetLabel = core.getInput('asset_label', { required: false });
     const assetContentType = core.getInput('asset_content_type', { required: true });
@@ -4240,11 +4240,15 @@ async function run() {
     // Upload a release asset
     // API Documentation: https://developer.github.com/v3/repos/releases/#upload-a-release-asset
     // Octokit Documentation: https://octokit.github.io/rest.js/#octokit-routes-repos-upload-release-asset
+    let queryString = '?';
+    if(assetName != '') queryString += `?name=${assetName}`;
+    if(assetLabel != '') queryString += `?name=${assetLabel}`;
+
     const uploadAssetResponse = await github.repos.uploadReleaseAsset({
-      url: uploadUrl.replace("{?name,label}", `?name=${assetName}&label=${assetLabel}`),
+      url: uploadUrl.replace("{?name,label}", queryString),
       headers,
       name: assetName,
-      file: fs.readFileSync(assetPath)
+      file: fs.readFileSync(assetPath != '' ? assetPath : assetName)
     });
 
     // Get the browser_download_url for the uploaded release asset from the response
