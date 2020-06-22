@@ -1,6 +1,6 @@
-name: 'Upload a Release Asset'
+name: 'upload file on release'
 description: 'Upload a release asset to an existing release in your repository'
-author: 'GitHub'
+author: 'Fhwang0926'
 inputs:
   upload_url:
     description: 'The URL for uploading assets to the release'
