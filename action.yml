@@ -5,18 +5,19 @@ inputs:
   upload_url:
     description: 'The URL for uploading assets to the release'
     required: true
-  asset_path:
-    description: 'The path to the asset you want to upload'
-    required: true
+  
   asset_name:
     description: 'The name of the asset you want to upload'
     required: true
-  asset_label:
-    description: 'The label of the asset you want to upload'
-    required: false
   asset_content_type:
     description: 'The content-type of the asset you want to upload. See the supported Media Types here: https://www.iana.org/assignments/media-types/media-types.xhtml for more information'
     required: true
+  asset_path:
+    description: 'The path to the asset you want to upload'
+    required: false
+  asset_label:
+    description: 'The label of the asset you want to upload'
+    required: false
 outputs:
   browser_download_url:
     description: 'The URL users can navigate to in order to download the uploaded asset'
