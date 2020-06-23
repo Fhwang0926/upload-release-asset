@@ -6768,14 +6768,14 @@ var __importStar = (this && this.__importStar) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 // Originally pulled from https://github.com/JasonEtco/actions-toolkit/blob/master/src/github.ts
 const graphql_1 = __webpack_require__(503);
-const { Octokit } = __importDefault(__webpack_require__(741));
+const rest_1 = __importDefault(__webpack_require__(741));
 const Context = __importStar(__webpack_require__(262));
 // We need this in order to extend Octokit
-Octokit.default.prototype = new Octokit.default();
+rest_1.default.prototype = new rest_1.default();
 exports.context = new Context.Context();
-class GitHub extends Octokit.default {
-    constructor(token, opts = {}) {
-        super(Object.assign(Object.assign({}, opts), { auth: `token ${token}` }));
+class GitHub extends rest_1.default {
+    constructor(token) {
+        super({ auth: `token ${token}` });
         this.graphql = graphql_1.defaults({
             headers: { authorization: `token ${token}` }
         });
