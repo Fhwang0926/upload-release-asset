@@ -4099,7 +4099,7 @@ function deprecate (message) {
 /***/ (function(module, __unusedexports, __webpack_require__) {
 
 const core = __webpack_require__(470);
-const { GitHub } = __webpack_require__(469);
+const GitHub = __webpack_require__(469);
 const fs = __webpack_require__(747);
 
 async function run() {
