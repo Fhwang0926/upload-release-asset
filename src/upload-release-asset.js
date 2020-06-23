@@ -1,6 +1,7 @@
 const core = require('@actions/core');
 const { GitHub } = require('@actions/github');
 const fs = require('fs');
+const { Console } = require('console');
 
 async function run() {
   try {
@@ -20,7 +21,8 @@ async function run() {
     const contentLength = filePath => fs.statSync(filePath).size;
 
     // Setup headers for API call, see Octokit Documentation: https://octokit.github.io/rest.js/#octokit-routes-repos-upload-release-asset for more information
-    const headers = { 'content-type': assetContentType, 'content-length': contentLength(assetPath) };
+    const target = assetPath !== '' ? assetPath : assetName;
+    const headers = { 'content-type': assetContentType, 'content-length': contentLength(target) };
 
     // Upload a release asset
     // API Documentation: https://developer.github.com/v3/repos/releases/#upload-a-release-asset
@@ -32,6 +34,14 @@ async function run() {
     if (assetLabel !== '') {
       queryString += queryString.length > 1 ? `&label=${assetLabel}` : `label=${assetLabel}`;
     }
+
+    Console(`request : ${JSON.stringify({
+        url: uploadUrl.replace('{?name,label}', queryString),
+        headers,
+        name: assetName,
+        file: fs.readFileSync(assetPath !== '' ? assetPath : assetName)
+      })}`
+    );
 
     const uploadAssetResponse = await github.repos.uploadReleaseAsset({
       url: uploadUrl.replace('{?name,label}', queryString),
