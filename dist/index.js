@@ -669,13 +669,6 @@ function validate(octokit, options) {
 
 /***/ }),
 
-/***/ 82:
-/***/ (function(module) {
-
-module.exports = require("console");
-
-/***/ }),
-
 /***/ 85:
 /***/ (function(module, __unusedexports, __webpack_require__) {
 
@@ -4108,7 +4101,6 @@ function deprecate (message) {
 const core = __webpack_require__(470);
 const { GitHub } = __webpack_require__(469);
 const fs = __webpack_require__(747);
-const { Console } = __webpack_require__(82);
 
 async function run() {
   try {

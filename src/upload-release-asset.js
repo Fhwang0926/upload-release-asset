@@ -1,7 +1,6 @@
 const core = require('@actions/core');
 const { GitHub } = require('@actions/github');
 const fs = require('fs');
-const { Console } = require('console');
 
 async function run() {
   try {
