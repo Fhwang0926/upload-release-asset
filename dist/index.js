@@ -4142,7 +4142,8 @@ async function run() {
       queryString += queryString.length > 1 ? `&label=${assetLabel}` : `label=${assetLabel}`;
     }
 
-    Console(`request : ${JSON.stringify({
+    // eslint-disable-next-line no-console
+    console.log(`request : ${JSON.stringify({
         url: uploadUrl.replace('{?name,label}', queryString),
         headers,
         name: assetName,
