@@ -8,6 +8,7 @@
     "lint": "eslint 'src/**.js' 'tests/**.js' --fix",
     "test": "eslint 'src/**.js' 'tests/**.js' && jest --coverage",
     "build": "ncc build src/main.js",
+    "serve": "node src/main.js --debug https://uploads.github.com/repos/Fhwang0926/upload-release-asset/releases/1/assets?{name,label} README.md",
     "precommit": "npm run build && git add dist/"
   },
   "repository": {
@@ -24,7 +25,8 @@
     "@actions/core": "^1.0.0",
     "@actions/exec": "^1.0.0",
     "@actions/github": "^1.0.0",
-    "@octokit/rest": "^18.0.0"
+    "@octokit/rest": "^18.0.0",
+    "mime-types": "^2.1.27"
   },
   "devDependencies": {
     "@zeit/ncc": "^0.20.4",
