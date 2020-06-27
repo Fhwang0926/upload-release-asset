@@ -42,7 +42,7 @@ async function run() {
       url: uploadUrl.replace('?{name,label}', queryString),
       headers,
       name: assetName,
-      data: fs.readFileSync(path.resolve(__dirname, target))
+      data: fs.readFileSync(target)
     };
 
     const uploadAssetResponse = await github.repos.uploadReleaseAsset(request);
