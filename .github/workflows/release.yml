@@ -46,7 +46,7 @@ jobs:
             label: 'bug'
           - title: 'ETC'
             label: 'documentation'
-        draft: false
+        draft: true # check and self publish
         prerelease: false
     
     - name: Upload Release
