@@ -2,7 +2,6 @@ const core = require('@actions/core');
 const { GitHub } = require('@actions/github');
 const fs = require('fs');
 const mime = require('mime-types');
-const path = require('path');
 
 async function run() {
   try {
