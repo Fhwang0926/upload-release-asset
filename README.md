@@ -4,7 +4,7 @@ This GitHub Action (written in JavaScript) wraps the
 
 ![](https://img.shields.io/github/v/release/Fhwang0926/upload-release-asset)
 ![](https://img.shields.io/github/license/Fhwang0926/upload-release-asset)
-![NPM Tests](https://github.com/Fhwang0926/upload-release-asset/workflows/NPM%20Tests/badge.svg)
+![yarn Tests](https://github.com/Fhwang0926/upload-release-asset/workflows/yarn%20Tests/badge.svg)
 ![release with file Tests](https://github.com/Fhwang0926/upload-release-asset/workflows/release%20with%20file%20Tests/badge.svg?branch=master)
 ![Keep the versions up-to-date](https://github.com/Fhwang0926/upload-release-asset/workflows/Keep%20the%20versions%20up-to-date/badge.svg)
 
