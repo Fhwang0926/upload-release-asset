@@ -27,7 +27,8 @@
     "@actions/github": "^1.0.0",
     "@octokit/rest": "^18.0.0",
     "jest": "^26.1.0",
-    "mime-types": "^2.1.27"
+    "mime-types": "^2.1.27",
+    "path": "^0.12.7"
   },
   "devDependencies": {
     "@zeit/ncc": "^0.20.4",

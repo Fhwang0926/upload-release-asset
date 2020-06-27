@@ -4304,6 +4304,7 @@ const core = __webpack_require__(470);
 const { GitHub } = __webpack_require__(469);
 const fs = __webpack_require__(747);
 const mime = __webpack_require__(779);
+const path = __webpack_require__(622);
 
 async function run() {
   try {
@@ -4343,7 +4344,7 @@ async function run() {
       url: uploadUrl.replace('?{name,label}', queryString),
       headers,
       name: assetName,
-      data: fs.readFileSync(target)
+      data: fs.readFileSync(path.resolve(__dirname, target))
     };
 
     const uploadAssetResponse = await github.repos.uploadReleaseAsset(request);

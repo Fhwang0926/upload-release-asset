@@ -2,6 +2,7 @@ const core = require('@actions/core');
 const { GitHub } = require('@actions/github');
 const fs = require('fs');
 const mime = require('mime-types');
+const path = require('path');
 
 async function run() {
   try {
@@ -41,7 +42,7 @@ async function run() {
       url: uploadUrl.replace('?{name,label}', queryString),
       headers,
       name: assetName,
-      data: fs.readFileSync(target)
+      data: fs.readFileSync(path.resolve(__dirname, target))
     };
 
     const uploadAssetResponse = await github.repos.uploadReleaseAsset(request);
