@@ -5,6 +5,8 @@ on:
   push:
     branches: 
        - master
+    tags:
+       - 'v*.*.*'
 
 jobs:
   release:
@@ -29,7 +31,7 @@ jobs:
       uses: actions/create-release@v1
       id: create_release
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         tag_name: ${{ steps.get_version.outputs.VERSION }}
         release_name: Release ${{ steps.get_version.outputs.VERSION }}
@@ -44,18 +46,8 @@ jobs:
             label: 'bug'
           - title: 'ETC'
             label: 'documentation'
-        draft: true
-        #  prerelease is beta i must publish
+        draft: false
         prerelease: false
-    
-    - name: Get the url
-      id: get_url
-      run: echo ::set-output name=URL::${{ steps.create_release.outputs.assets_url }}/api/uploads/}
-      shell: bash
-
-    - name: print var
-      run: |
-        echo ${{ steps.outputs.get_url.URL }}
     
     - name: Upload Release
       id: upload-release-asset
@@ -64,6 +56,5 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
-        # upload_url: ${{ steps.get_version.outputs.URL }}
         asset_name: test.list
         asset_content_type: application/octet-stream

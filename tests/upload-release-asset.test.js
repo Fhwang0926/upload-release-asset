@@ -19,11 +19,11 @@ describe('Upload Release Asset', () => {
       }
     });
 
+    content = Buffer.from('asset_name');
     fs.statSync = jest.fn().mockReturnValueOnce({
-      size: 527
+      size: content.length
     });
 
-    content = Buffer.from('test content');
     fs.readFileSync = jest.fn().mockReturnValueOnce(content);
 
     context.repo = {
@@ -41,20 +41,20 @@ describe('Upload Release Asset', () => {
   });
 
   test('Upload release asset endpoint is called', async () => {
+    // eslint-disable-next-line camelcase
+    const asset_content_type = 'text/plain';
     core.getInput = jest
       .fn()
       .mockReturnValueOnce('upload_url')
-      .mockReturnValueOnce('asset_path')
-      .mockReturnValueOnce('asset_name')
-      .mockReturnValueOnce('asset_content_type');
+      .mockReturnValueOnce('asset_name.txt');
 
     await run();
 
     expect(uploadReleaseAsset).toHaveBeenCalledWith({
       url: 'upload_url',
-      headers: { 'content-type': 'asset_content_type', 'content-length': 527 },
-      name: 'asset_name',
-      file: content
+      headers: { 'content-type': asset_content_type, 'content-length': content.length },
+      name: 'asset_name.txt',
+      data: content
     });
   });
 
@@ -62,7 +62,6 @@ describe('Upload Release Asset', () => {
     core.getInput = jest
       .fn()
       .mockReturnValueOnce('upload_url')
-      .mockReturnValueOnce('asset_path')
       .mockReturnValueOnce('asset_name')
       .mockReturnValueOnce('asset_content_type');
 
@@ -77,7 +76,6 @@ describe('Upload Release Asset', () => {
     core.getInput = jest
       .fn()
       .mockReturnValueOnce('upload_url')
-      .mockReturnValueOnce('asset_path')
       .mockReturnValueOnce('asset_name')
       .mockReturnValueOnce('asset_content_type');
 

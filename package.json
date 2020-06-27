@@ -5,8 +5,8 @@
   "description": "Upload a release asset to an existing GitHub Release",
   "main": "dist/index.js",
   "scripts": {
-    "lint": "eslint 'src/**.js' 'tests/**.js' --fix",
-    "test": "eslint 'src/**.js' 'tests/**.js' && jest --coverage",
+    "lint": "eslint src/**.js tests/**.js --fix",
+    "test": "eslint src/**.js tests/**.js && jest --coverage",
     "build": "ncc build src/main.js",
     "serve": "node src/main.js --debug https://uploads.github.com/repos/Fhwang0926/upload-release-asset/releases/1/assets?{name,label} README.md",
     "precommit": "npm run build && git add dist/"
@@ -26,19 +26,19 @@
     "@actions/exec": "^1.0.0",
     "@actions/github": "^1.0.0",
     "@octokit/rest": "^18.0.0",
+    "jest": "^26.1.0",
     "mime-types": "^2.1.27"
   },
   "devDependencies": {
     "@zeit/ncc": "^0.20.4",
-    "eslint": "^5.13.0",
+    "eslint": "7.2.0",
     "eslint-config-airbnb": "^17.1.0",
     "eslint-config-prettier": "^3.6.0",
-    "eslint-plugin-import": "^2.16.0",
+    "eslint-plugin-import": "2.21.2",
     "eslint-plugin-jsx-a11y": "^6.2.1",
     "eslint-plugin-prettier": "^2.7.0",
     "eslint-plugin-react": "^7.12.4",
     "husky": "^3.0.5",
-    "jest": "^24.8.0",
     "prettier": "^1.16.4"
   },
   "jest": {
@@ -48,7 +48,7 @@
     ],
     "coverageThreshold": {
       "global": {
-        "branches": 80,
+        "branches": 75,
         "functions": 80,
         "lines": 80,
         "statements": 80

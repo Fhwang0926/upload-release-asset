@@ -5,7 +5,6 @@ inputs:
   upload_url:
     description: 'The URL for uploading assets to the release'
     required: true
-  
   asset_name:
     description: 'The name of the asset you want to upload'
     required: true
