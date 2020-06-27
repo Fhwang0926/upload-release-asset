@@ -13,7 +13,6 @@ async function run() {
     const assetName = core.getInput('asset_name', { required: true });
 
     // optional
-    const assetPath = core.getInput('asset_path', { required: false });
     const assetLabel = core.getInput('asset_label', { required: false });
 
     // Determine content-length for header to upload asset
@@ -23,12 +22,13 @@ async function run() {
       const index = t.length - 1;
       const extension = t[index];
       const type = mime.lookup(extension);
-      // const result = type === false ? 'text/plain' : type;
+      // eslint-disable-next-line no-console
+      console.log(`target: ${target}, type: ${type}`);
       return type;
     };
 
     // Setup headers for API call, see Octokit Documentation: https://octokit.github.io/rest.js/#octokit-routes-repos-upload-release-asset for more information
-    const target = assetPath !== undefined ? assetPath : assetName;
+    const target = assetName;
     const headers = { 'content-type': assetContentType(target), 'content-length': contentLength(target) };
 
     // Upload a release asset
