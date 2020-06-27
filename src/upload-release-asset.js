@@ -26,6 +26,10 @@ async function run() {
       console.log(`target: ${target}, type: ${type}`);
       return type;
     };
+    const getName = target => {
+      const t = target.split('/');
+      return t[t.length - 1];
+    };
 
     // Setup headers for API call, see Octokit Documentation: https://octokit.github.io/rest.js/#octokit-routes-repos-upload-release-asset for more information
     const target = assetName;
@@ -40,7 +44,7 @@ async function run() {
     const request = {
       url: uploadUrl.replace('?{name,label}', queryString),
       headers,
-      name: assetName,
+      name: getName(target),
       data: fs.readFileSync(target)
     };
 
