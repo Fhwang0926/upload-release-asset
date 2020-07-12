@@ -15,7 +15,10 @@ Create a workflow `.yml` file in your repositories `.github/workflows` directory
 ### Inputs / require too simple!! :D
 For more information on these inputs
 
-- `upload_url`: The URL for uploading assets to the release, which could come from another GitHub Action, for example the [`@actions/create-release`](https://www.github.com/actions/create-release) GitHub Action
+- `[require]upload_url`: The URL for uploading assets to the release, which could come from another GitHub Action, for example the [`@actions/create-release`](https://www.github.com/actions/create-release) GitHub Action
+- `[require]asset_name` : path + filename
+- `[optional]asset_label` : is optionnal for your tagging
+
 
 ### Outputs
 For more information on these outputs, see the [API Documentation](https://developer.github.com/v3/repos/releases/#response-for-successful-upload) for an example of what these outputs look like
@@ -64,7 +67,6 @@ jobs:
           upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps 
           asset_name: ./latest.installer.exe # path + filename
           asset_label: latest
-          asset_content_type: application/zip
 ```
 
 This will upload a release artifact to an existing release, outputting the `browser_download_url` for the asset which could be handled by a third party service, or by GitHub Actions for additional uses. For more information, see the GitHub Documentation for the [upload a release asset](https://developer.github.com/v3/repos/releases/#upload-a-release-asset) endpoint. 
